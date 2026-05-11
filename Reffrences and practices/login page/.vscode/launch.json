@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run LoginApp",
+            "request": "launch",
+            "mainClass": "LoginApp",
+            "projectName": "plz chaljoaa",
+            "vmArgs": "--module-path lib --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.base"
+        }
+    ]
+}

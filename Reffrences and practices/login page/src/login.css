@@ -1,0 +1,459 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   login.css — Modern Glassmorphism Login Page
+   Place this file in the same directory as LoginApp.java / LoginApp.class
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Font (JavaFX system fallback chain) ───────────────────────────────── */
+* {
+    -fx-font-family: "Segoe UI", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CSS VARIABLES (dark mode — default)
+   Applied when root has .dark-mode class
+   ══════════════════════════════════════════════════════════════════════════ */
+.dark-mode {
+    /* Backgrounds */
+    -bg-deep:        #050810;
+    -bg-card:        rgba(15, 20, 35, 0.72);
+    -bg-field:       rgba(255, 255, 255, 0.055);
+    -bg-field-focus: rgba(255, 255, 255, 0.09);
+    -bg-btn:         linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+
+    /* Borders */
+    -border-card:    rgba(255, 255, 255, 0.10);
+    -border-field:   rgba(255, 255, 255, 0.10);
+    -border-focused: rgba(139, 92, 246, 0.80);
+
+    /* Text */
+    -text-primary:   #f0f4ff;
+    -text-secondary: #9ba3c0;
+    -text-muted:     #5c6483;
+    -text-link:      #a78bfa;
+    -text-input:     #e8ecf8;
+    -text-placeholder: rgba(155, 163, 192, 0.55);
+
+    /* Accent */
+    -accent:         #7c3aed;
+    -accent-light:   #a78bfa;
+    -accent-glow:    rgba(124, 58, 237, 0.45);
+
+    /* Orbs */
+    -orb1-color: rgba(99, 102, 241, 0.28);
+    -orb2-color: rgba(168, 85, 247, 0.22);
+    -orb3-color: rgba(59, 130, 246, 0.18);
+
+    /* Status */
+    -error-bg:   rgba(239, 68, 68, 0.12);
+    -error-border: rgba(239, 68, 68, 0.45);
+    -error-text:   #fca5a5;
+    -success-bg:   rgba(34, 197, 94, 0.10);
+    -success-border: rgba(34, 197, 94, 0.40);
+    -success-text:   #86efac;
+    -info-bg:    rgba(59, 130, 246, 0.10);
+    -info-border: rgba(59, 130, 246, 0.40);
+    -info-text:   #93c5fd;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE overrides
+   ══════════════════════════════════════════════════════════════════════════ */
+.light-mode {
+    -bg-deep:        #e8ecf5;
+    -bg-card:        rgba(255, 255, 255, 0.80);
+    -bg-field:       rgba(0, 0, 0, 0.04);
+    -bg-field-focus: rgba(0, 0, 0, 0.07);
+    -bg-btn:         linear-gradient(135deg, #4f46e5, #7c3aed, #9333ea);
+
+    -border-card:    rgba(0, 0, 0, 0.09);
+    -border-field:   rgba(0, 0, 0, 0.10);
+    -border-focused: rgba(99, 102, 241, 0.75);
+
+    -text-primary:   #0f1025;
+    -text-secondary: #4b5280;
+    -text-muted:     #9ca3af;
+    -text-link:      #6d28d9;
+    -text-input:     #111827;
+    -text-placeholder: rgba(100, 116, 139, 0.55);
+
+    -accent:         #6d28d9;
+    -accent-light:   #8b5cf6;
+    -accent-glow:    rgba(109, 40, 217, 0.30);
+
+    -orb1-color: rgba(99, 102, 241, 0.15);
+    -orb2-color: rgba(168, 85, 247, 0.12);
+    -orb3-color: rgba(59, 130, 246, 0.10);
+
+    -error-bg:   rgba(239, 68, 68, 0.08);
+    -error-border: rgba(220, 38, 38, 0.35);
+    -error-text:   #dc2626;
+    -success-bg:   rgba(22, 163, 74, 0.08);
+    -success-border: rgba(22, 163, 74, 0.35);
+    -success-text:   #16a34a;
+    -info-bg:    rgba(37, 99, 235, 0.08);
+    -info-border: rgba(37, 99, 235, 0.35);
+    -info-text:   #2563eb;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BACKGROUND PANE
+   ══════════════════════════════════════════════════════════════════════════ */
+.bg-pane {
+    -fx-background-color: -bg-deep;
+}
+
+.dark-mode .bg-pane {
+    -fx-background-color: linear-gradient(155deg, #060a18 0%, #0b0f22 45%, #0d0818 100%);
+}
+
+.light-mode .bg-pane {
+    -fx-background-color: linear-gradient(155deg, #dde3f5 0%, #eaeef8 50%, #ddd8f2 100%);
+}
+
+/* ── Floating orbs ─────────────────────────────────────────────────────── */
+.orb-1 {
+    -fx-fill: -orb1-color;
+    -fx-effect: dropshadow(gaussian, -orb1-color, 120, 0.4, 0, 0);
+}
+
+.orb-2 {
+    -fx-fill: -orb2-color;
+    -fx-effect: dropshadow(gaussian, -orb2-color, 100, 0.4, 0, 0);
+}
+
+.orb-3 {
+    -fx-fill: -orb3-color;
+    -fx-effect: dropshadow(gaussian, -orb3-color, 80, 0.3, 0, 0);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LOGIN CARD — glassmorphism
+   ══════════════════════════════════════════════════════════════════════════ */
+.login-card {
+    -fx-background-color: -bg-card;
+    -fx-background-radius: 20;
+    -fx-border-color: -border-card;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.50), 60, 0.1, 0, 20);
+}
+
+.dark-mode .login-card {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.70), 80, 0.12, 0, 24);
+}
+
+.light-mode .login-card {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.14), 40, 0.08, 0, 12);
+}
+
+/* Success highlight */
+.card-success {
+    -fx-border-color: rgba(34, 197, 94, 0.55);
+    -fx-effect: dropshadow(gaussian, rgba(34, 197, 94, 0.25), 40, 0.2, 0, 0);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LOGO / HEADING
+   ══════════════════════════════════════════════════════════════════════════ */
+.logo-mark {
+    -fx-background-color: linear-gradient(135deg, rgba(99,102,241,0.25), rgba(168,85,247,0.2));
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(139, 92, 246, 0.4);
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(124,58,237,0.40), 20, 0.3, 0, 0);
+}
+
+.logo-icon {
+    -fx-font-size: 26px;
+    -fx-text-fill: #7c3aed;
+    -fx-opacity: 0.9;
+}
+
+.logo-icon-inner {
+    -fx-font-size: 12px;
+    -fx-text-fill: #c4b5fd;
+}
+
+.card-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-primary;
+    -fx-letter-spacing: -0.3;
+}
+
+.card-subtitle {
+    -fx-font-size: 13.5px;
+    -fx-text-fill: -text-secondary;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FIELD LABELS
+   ══════════════════════════════════════════════════════════════════════════ */
+.field-label {
+    -fx-font-size: 12.5px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-secondary;
+    -fx-letter-spacing: 0.3;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   INPUT FIELD WRAPPER
+   ══════════════════════════════════════════════════════════════════════════ */
+.field-wrapper {
+    -fx-background-color: -bg-field;
+    -fx-background-radius: 10;
+    -fx-border-color: -border-field;
+    -fx-border-radius: 10;
+    -fx-border-width: 1.2;
+    -fx-padding: 0 12 0 4;
+    -fx-min-height: 46px;
+    -fx-pref-height: 46px;
+    -fx-cursor: text;
+    -fx-transition: all 0.2s ease;
+}
+
+.field-wrapper-focused {
+    -fx-background-color: -bg-field-focus;
+    -fx-border-color: -border-focused;
+    -fx-effect: dropshadow(gaussian, -accent-glow, 12, 0.2, 0, 0);
+}
+
+/* ── Icon inside field ─────────────────────────────────────────────────── */
+.field-icon {
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-muted;
+    -fx-padding: 0 4 0 10;
+    -fx-opacity: 0.75;
+}
+
+/* ── Text input (transparent background — wrapper provides the bg) ─────── */
+.field-input {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: -text-input;
+    -fx-prompt-text-fill: -text-placeholder;
+    -fx-font-size: 14px;
+    -fx-padding: 0 4 0 4;
+    -fx-highlight-fill: rgba(139, 92, 246, 0.35);
+    -fx-highlight-text-fill: -text-input;
+}
+
+/* Remove default focus ring from TextField — wrapper handles it */
+.field-input:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* ── Clear / eye buttons ────────────────────────────────────────────────── */
+.field-clear-btn,
+.field-eye-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: -text-muted;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-padding: 0 4 0 4;
+    -fx-opacity: 0.6;
+}
+
+.field-clear-btn:hover,
+.field-eye-btn:hover {
+    -fx-opacity: 1.0;
+    -fx-text-fill: -text-secondary;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   OPTIONS ROW — remember me + forgot password
+   ══════════════════════════════════════════════════════════════════════════ */
+.remember-check {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.remember-check .box {
+    -fx-background-color: -bg-field;
+    -fx-border-color: -border-field;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.remember-check:selected .box {
+    -fx-background-color: -accent;
+    -fx-border-color: -accent;
+}
+
+.remember-check .mark {
+    -fx-background-color: white;
+    -fx-shape: "M 0,4 L 2,6 L 6,2";
+}
+
+.forgot-link {
+    -fx-text-fill: -text-link;
+    -fx-font-size: 13px;
+    -fx-border-color: transparent;
+    -fx-underline: false;
+    -fx-cursor: hand;
+}
+
+.forgot-link:hover {
+    -fx-underline: true;
+    -fx-text-fill: -accent-light;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LOGIN BUTTON
+   ══════════════════════════════════════════════════════════════════════════ */
+.login-btn {
+    -fx-background-color: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+    -fx-text-fill: white;
+    -fx-font-size: 14.5px;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 0.3;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.5), 20, 0.25, 0, 6);
+}
+
+.login-btn:hover {
+    -fx-background-color: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #9333ea 100%);
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.70), 28, 0.30, 0, 8);
+}
+
+.login-btn:pressed,
+.login-btn-loading {
+    -fx-background-color: linear-gradient(135deg, #4338ca 0%, #6d28d9 50%, #7c3aed 100%);
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.35), 12, 0.15, 0, 3);
+}
+
+.login-btn:disabled {
+    -fx-opacity: 0.75;
+    -fx-cursor: default;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FEEDBACK LABELS
+   ══════════════════════════════════════════════════════════════════════════ */
+.feedback-label {
+    -fx-font-size: 13px;
+    -fx-padding: 10 14 10 14;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-wrap-text: true;
+}
+
+.feedback-error {
+    -fx-background-color: -error-bg;
+    -fx-border-color: -error-border;
+    -fx-text-fill: -error-text;
+}
+
+.feedback-success {
+    -fx-background-color: -success-bg;
+    -fx-border-color: -success-border;
+    -fx-text-fill: -success-text;
+}
+
+.feedback-info {
+    -fx-background-color: -info-bg;
+    -fx-border-color: -info-border;
+    -fx-text-fill: -info-text;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DIVIDER
+   ══════════════════════════════════════════════════════════════════════════ */
+.divider-line {
+    -fx-background-color: -border-card;
+    -fx-pref-height: 1;
+    -fx-max-height: 1;
+}
+
+.divider-text {
+    -fx-text-fill: -text-muted;
+    -fx-font-size: 11px;
+    -fx-letter-spacing: 1.5;
+    -fx-padding: 0 8 0 8;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SIGN UP ROW
+   ══════════════════════════════════════════════════════════════════════════ */
+.signup-text {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 13px;
+}
+
+.signup-link {
+    -fx-text-fill: -accent-light;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+    -fx-underline: false;
+    -fx-cursor: hand;
+}
+
+.signup-link:hover {
+    -fx-text-fill: -text-primary;
+    -fx-underline: true;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   THEME TOGGLE BUTTON
+   ══════════════════════════════════════════════════════════════════════════ */
+.theme-toggle {
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+    -fx-border-width: 1;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+    -fx-pref-width: 38px;
+    -fx-pref-height: 38px;
+    -fx-min-width: 38px;
+    -fx-min-height: 38px;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+    -fx-text-fill: -text-secondary;
+}
+
+.theme-toggle:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.13);
+    -fx-border-color: -accent-light;
+    -fx-text-fill: -text-primary;
+}
+
+.light-mode .theme-toggle {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+    -fx-border-color: rgba(0, 0, 0, 0.12);
+}
+
+.light-mode .theme-toggle:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.10);
+    -fx-border-color: -accent;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SCROLLBAR (hide default ugly one)
+   ══════════════════════════════════════════════════════════════════════════ */
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-opacity: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TOOLTIP
+   ══════════════════════════════════════════════════════════════════════════ */
+.tooltip {
+    -fx-background-color: rgba(20, 24, 40, 0.95);
+    -fx-text-fill: #e2e8f0;
+    -fx-font-size: 12px;
+    -fx-background-radius: 6;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 12, 0.1, 0, 4);
+}
