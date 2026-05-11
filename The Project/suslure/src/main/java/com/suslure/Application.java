@@ -63,7 +63,7 @@ public class Application {
         // ── Register DetectionFilter on /login ─────────────────────────────
         FilterDef fd = new FilterDef();
         fd.setFilterName("DetectionFilter");
-        fd.setFilterClass(DetectionFilter.class.getName());
+        fd.setFilter(new DetectionFilter());   // FIX: instance instead of classname string
         ctx.addFilterDef(fd);
 
         FilterMap fm = new FilterMap();
