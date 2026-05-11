@@ -140,35 +140,94 @@ public class AdminServlet extends HttpServlet {
 </div>
 <div class="page">
 
-  <!-- Stats Row -->
-  <div class="stats-grid">
-    <div class="stat-card sc-total"> <span class="stat-num">""" + total   + """</span><span class="stat-lbl">Total Attacks</span></div>
-    <div class="stat-card sc-sqli">  <span class="stat-num">""" + sqli    + """</span><span class="stat-lbl">💉 SQL Injection</span></div>
-    <div class="stat-card sc-brute"> <span class="stat-num">""" + brute   + """</span><span class="stat-lbl">🔨 Brute Force</span></div>
-    <div class="stat-card sc-hijack"><span class="stat-num">""" + hijack  + """</span><span class="stat-lbl">👻 Session Hijack</span></div>
-    <div class="stat-card sc-normal"><span class="stat-num">""" + normal  + """</span><span class="stat-lbl">🔐 Normal Attempts</span></div>
-    <div class="stat-card sc-ips">   <span class="stat-num">""" + uniqIPs + """</span><span class="stat-lbl">Unique IPs</span></div>
-  </div>
+                <!-- Stats Row -->
+                <div class="stats-grid">
+                
+                  <div class="stat-card sc-total">
+                    <span class="stat-num">""\" + total + ""\"</span>
+                    <span class="stat-lbl">Total Attacks</span>
+                  </div>
+                
+                  <div class="stat-card sc-sqli">
+                    <span class="stat-num">""\" + sqli + ""\"</span>
+                    <span class="stat-lbl">SQL Injection</span>
+                  </div>
+                
+                  <div class="stat-card sc-brute">
+                    <span class="stat-num">""\" + brute + ""\"</span>
+                    <span class="stat-lbl">Brute Force</span>
+                  </div>
+                
+                  <div class="stat-card sc-suslure">
+                    <span class="stat-num">""\" + suslure + ""\"</span>
+                    <span class="stat-lbl">Suslure</span>
+                  </div>
+                
+                  <div class="stat-card sc-normal">
+                    <span class="stat-num">""\" + normal + ""\"</span>
+                    <span class="stat-lbl">Normal Attempts</span>
+                  </div>
+                
+                  <div class="stat-card sc-ips">
+                    <span class="stat-num">""\" + uniqIPs + ""\"</span>
+                    <span class="stat-lbl">Unique IPs</span>
+                  </div>
+                
+                </div>
 
-  <!-- Controls -->
-  <div class="controls">
-    <a href="/admin"                  class="filter-btn """
-                + ("ALL".equals(activeFilter)           ? "active" : "") + """ ">ALL</a>
-    <a href="/admin?type=SQLI"        class="filter-btn f-sqli """
-                + ("SQLI".equals(activeFilter)          ? "active" : "") + """ ">💉 SQLI</a>
-    <a href="/admin?type=BRUTE_FORCE" class="filter-btn f-brute """
-                + ("BRUTE_FORCE".equals(activeFilter)   ? "active" : "") + """ ">🔨 BRUTE</a>
-    <a href="/admin?type=SESSION_HIJACK" class="filter-btn f-hijack """
-                + ("SESSION_HIJACK".equals(activeFilter)? "active" : "") + """ ">👻 HIJACK</a>
-    <a href="/admin?type=NORMAL"      class="filter-btn """
-                + ("NORMAL".equals(activeFilter)          ? "active" : "") + """ ">🔐 NORMAL</a>
-    <div class="spacer"></div>
-    <a href="/simulate" class="action-btn btn-sim">⚡ SIMULATE 20 ATTACKS</a>
-    <form method="POST" action="/admin" style="display:inline" onsubmit="return confirm('Delete ALL records?')">
-      <input type="hidden" name="action" value="clear"/>
-      <button type="submit" class="action-btn btn-clr">🗑 CLEAR ALL</button>
-    </form>
-  </div>
+                <!-- Controls -->
+                <div class="controls">
+                
+                  <a href="/admin"
+                     class="filter-btn ""\"
+                        + ("ALL".equals(activeFilter) ? "active" : "") + ""\" ">
+                     ALL
+                  </a>
+                
+                  <a href="/admin?type=SQLI"
+                     class="filter-btn f-sqli ""\"
+                        + ("SQLI".equals(activeFilter) ? "active" : "") + ""\" ">
+                     SQLI
+                  </a>
+                
+                  <a href="/admin?type=BRUTE_FORCE"
+                     class="filter-btn f-brute ""\"
+                        + ("BRUTE_FORCE".equals(activeFilter) ? "active" : "") + ""\" ">
+                     BRUTE
+                  </a>
+                
+                  <a href="/admin?type=SUSLURE"
+                     class="filter-btn f-suslure ""\"
+                        + ("SUSLURE".equals(activeFilter) ? "active" : "") + ""\" ">
+                     SUSLURE
+                  </a>
+                
+                  <a href="/admin?type=NORMAL"
+                     class="filter-btn ""\"
+                        + ("NORMAL".equals(activeFilter) ? "active" : "") + ""\" ">
+                     NORMAL
+                  </a>
+                
+                  <div class="spacer"></div>
+                
+                  <a href="/simulate" class="action-btn btn-sim">
+                     SIMULATE 20 ATTACKS
+                  </a>
+                
+                  <form method="POST"
+                        action="/admin"
+                        style="display:inline"
+                        onsubmit="return confirm('Delete ALL records?')">
+                
+                      <input type="hidden" name="action" value="clear"/>
+                
+                      <button type="submit" class="action-btn btn-clr">
+                         CLEAR ALL
+                      </button>
+                
+                  </form>
+                
+                </div>
 
   <!-- Table -->
   <div class="table-wrap">
@@ -183,9 +242,13 @@ public class AdminServlet extends HttpServlet {
       <tbody>""" + rows + """
       </tbody>
     </table>
-  </div>
-  <div class="refresh-note">AUTO-REFRESH EVERY 15s · """ + records.size() + """ RECORDS SHOWN</div>
-</div>
+                </div>
+                
+                <div class="refresh-note">
+                    AUTO-REFRESH EVERY 15s • ""\" + records.size() + ""\" RECORDS SHOWN
+                </div>
+                
+                </div>
 <footer>HONEYTRAP v2.0 · DETECT · TRAP · EXPOSE · DESTROY</footer>
 </body>
 </html>
